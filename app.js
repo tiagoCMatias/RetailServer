@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const mongodb = require('./mongodb');
 
 const retailRoute = require('./api/routes/retail');
+const searchRoute = require('./api/routes/search');
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -30,6 +32,7 @@ app.use(function (req, res, next) {
 
 /** Routes **/
 app.use('/api/retail', retailRoute);
+app.use('/api/search', searchRoute);
 
 /** Error Handling */
 app.use( (req, res, next) => {

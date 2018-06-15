@@ -1,22 +1,29 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+/*const location = new GeoJSON({
+    point: {
+        type: "Point",
+        coordinates: [Number]
+    }
+});*/
+
 const ShopSchema = new Schema({
   cliente: {
     type: String,
     required: "Shop name is mandatory."  
   },
-  latitude: {
-    type: Number,
-    required: "Shop latitude is mandatory."
-  },
-  longitude: {
-    type: Number,
-    required: "Shop longitude is mandatory."
+  location: {
+    type: { type: String }
+    , coordinates: [Number]
   },
   address: {
     type: String,
     required: "Address is mandatory."  
+  },
+  shopType: {
+    type: String,
+    required: "shopType is mandatory."  
   },
   createdAt: {
     type: Date,
@@ -28,5 +35,6 @@ const ShopSchema = new Schema({
   }
 });
 
+ShopSchema.index({ location: '2dsphere' });
 module.exports = mongoose.model('Shop', ShopSchema);
 
