@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
                     type : "Point" ,
                     coordinates : [ location.latidude, location.longitude ]
                 },
-                $maxDistance : 15000 // in meters
+                $maxDistance : 4100 // in meters
             }
         }    
     }).where("shopType").equals(type)
